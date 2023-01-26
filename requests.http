@@ -1,0 +1,67 @@
+###
+POST http://localhost:3001/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Bryan",
+    "last_name": "Martinez",
+    "dpi": "15345436",
+    "email": "admin@gmail.com",
+    "phone": "58819510",
+    "password": "admin123",
+    "credits": "300"
+}
+
+###
+GET http://localhost:3001/api/users HTTP/1.1
+
+###
+GET http://localhost:3001/api/users/63cdf99ea016c3c143cb0bfd HTTP/1.1
+
+###
+PUT http://localhost:3001/api/users/63c0dea667cee26bff57bc1a HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "jose",
+    "last_name": "elizondo",
+    "dpi": "15346792",
+    "email": "jose1@gmail.com",
+    "phone": "58819510",
+    "password": "123456",
+    "credits": "350"
+}
+
+###
+DELETE http://localhost:3001/api/users/63c0d022b07f956d0950f8f2 HTTP/1.1
+
+
+//MOVIES
+###
+POST http://localhost:3001/api/movies HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "El Conjuro 3",
+    "description": "Los investigadores de fenómenos paranormales Ed y Lorraine Warren se enfrentan a un nuevo caso: el de un hombre acusado de un terrible asesinato, que asegura haber sido poseído por un demonio.",
+    "imagen": "https://elregio.com/imagenes/9e4RoHQXTcFdkHOEX2qd2J1Z4k8aK3ejdKyOoaNq.jpeg"
+}
+
+###
+GET http://localhost:3001/api/movies HTTP/1.1
+
+###
+GET http://localhost:3001/api/movies/63cf9059d571c6b7db54669e HTTP/1.1
+
+###
+PUT http://localhost:3001/api/users/63cf9059d571c6b7db54669e HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Eternals",
+    "description": "Los Eternos son una raza de seres inmortales con poderes sobrehumanos que han vivido en secreto en la Tierra durante miles de años. Aunque nunca han intervenido en el destino de la población, ahora una amenaza se cierne sobre la humanidad.",
+    "imagen": "https://as01.epimg.net/meristation/imagenes/2021/05/24/videos/1621863624_743853_1621863834_portada_normal.jpg"
+}
+
+###
+DELETE http://localhost:3001/api/users/63cf9059d571c6b7db54669e HTTP/1.1
