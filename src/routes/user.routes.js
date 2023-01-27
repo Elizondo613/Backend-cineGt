@@ -1,5 +1,6 @@
 const express = require('express');
 const userSchema = require('../models/user');
+var jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -7,6 +8,21 @@ const router = express.Router();
 router.post('/users', (req, res) => {
     const user = userSchema(req.body);
     user.save().then((data) => res.json(data)).catch((error) => res.json({ message: error }));
+});
+
+router.post('/users/login', async (req, res) => {
+    const usuarioEncontrado = await userSchema.findOne({name: req.body.name})
+    if(!usuarioEncontrado){
+        return res.status(404).json({ message: 'Usuario no encontrado' })
+    }else{
+        if(usuarioEncontrado.password == req.body.password){
+            const token = jwt.sign({id: usuarioEncontrado._id},"hola",{
+                expiresIn: 86400
+            });
+            return res.status(200).json({usuario: usuarioEncontrado, token:token});
+        }
+        return res.status(500).json({ message: "Contraseña incorrecta" })
+    }
 });
 
 //Get all users

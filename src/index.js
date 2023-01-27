@@ -9,21 +9,23 @@ const movieRoutes = require("./routes/movies.routes");
 const { restart } = require('nodemon');
 const cors = require('cors');
 
-/*const corsOptions ={
+const corsOptions ={
     origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
-}*/
+}
 
 //Settings
 app.set('port', process.env.PORT || 3001);
 
 //Middlewares
 app.use(morgan('dev'));
+app.use(cors(corsOptions));
 app.use(express.json());
+
 app.use('/api', userRoutes);
 app.use('/api', movieRoutes);
-app.use(cors());
+
 
 //Routes
 app.get("/", (req, res) => {
@@ -35,8 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //MongoDB connection
 mongoose.connect(process.env.MONGODB_URI);
-
-mongoose.set('strictQuery', true);
 
 //Starting the server
 app.listen(app.get('port'), () => {
